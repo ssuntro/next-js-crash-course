@@ -1,11 +1,11 @@
+import classes from './Post.module.css'; //importing the Post component
 
-const names = ["AnnJa", "Awesome"];
-function Post() {
-    const chosenName = Math.random() > 0.5 ? names[0] : names[1];
+function Post(props) {
     return (
-        <div>
-            <p>{chosenName}</p>
-            <p>React.js is awesome</p>
+        <div className={classes.post} >
+        {/* <div className='post' style = {{color: 'red', textAlign: 'left'}}> */}
+            <p className={classes.author}>{props.author}</p>
+            <p className={classes.body}>{props.body}</p>
         </div>
     )
 }
