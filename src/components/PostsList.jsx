@@ -13,15 +13,20 @@ function PostsList({ isPosting, onStopPosting }) {
   // }).then((data) => {data.posts});
   useEffect(() => {
     async function fetchPosts() {
+      setIsFetching(true);
       const response = await fetch('http://localhost:8080/posts');
       const resData = await response.json();
       setPosts(resData.posts); //with useEffect, we can ensure that the data is fetched only once when the component is mounted. And cause no infinite loop.
+      setIsFetching(false);
     }
+    
     fetchPosts();
+    
   }, []);
 
 
 
+  const [isFetching, setIsFetching] = useState(false);
   const [posts, setPosts] = useState([])
 
   function addPostHandler(newPost) {
@@ -52,7 +57,7 @@ function PostsList({ isPosting, onStopPosting }) {
       ) : null}
       {/* null or undefined or false are display nothing */}
 
-      {posts.length > 0 && (
+      {!isFetching && posts.length > 0 && (
       <ul className={classes.posts}>
         <Post author='Awesome' body='body2' />
         <Post author='Aoi' />
@@ -64,12 +69,16 @@ function PostsList({ isPosting, onStopPosting }) {
       </ul>
       )}
 
-      {posts.length === 0 && (
+      {!isFetching && posts.length === 0 && (
         <div style={{textAlign: 'center', color: 'white'}}>
           <h2>There is no posts yet.</h2>
           <p>Start adding some!</p>
         </div>
       )}
+
+      {isFetching && (<div>
+        <p style={{textAlign: 'center', color: 'white'}}>Loading...</p>
+      </div>)}
     </>
   )
 }
