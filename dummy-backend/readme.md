@@ -1,2 +1,2 @@
 # Setup development env
-`yarn start`
+`yarn install && yarn start`
