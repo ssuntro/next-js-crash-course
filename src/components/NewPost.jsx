@@ -30,6 +30,7 @@ function NewPost({ onCancel }) {
         author: enteredAuthor
     }
     console.log(postData);
+    onCancel()
   }
   return (
     <form className={classes.form} onSubmit={submitHandler}>
