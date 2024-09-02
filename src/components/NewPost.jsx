@@ -1,6 +1,6 @@
 import classes from './NewPost.module.css';
 
-function NewPost(props) {
+function NewPost({onBodyChange, onAuthorChange}) {
     // #1
     // document.querySelector('textarea').addEventListener('change', function() {});
     
@@ -13,11 +13,11 @@ function NewPost(props) {
         <form className={classes.form}>
             <p>
                 <label htmlFor="body">Text</label>
-                <input type="text" id="body" required rows={3} onChange={props.onBodyChange}/>
+                <input type="text" id="body" required rows={3} onChange={onBodyChange}/>
             </p>
             <p>
                 <label htmlFor="name">Your Name</label>
-                <input type="text" id="name" required onChange={props.onAuthorChange}/>
+                <input type="text" id="name" required onChange={onAuthorChange}/>
             </p>
         </form>
     )
