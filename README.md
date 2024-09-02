@@ -2,10 +2,10 @@
 <A/>
 <B/>
 
-## Typical prop
+## Typical prop, onChange
 <A onChange={onChange}/>
 
-## Children
+## special prop, Children
 <A>
  <B />
 </A>
