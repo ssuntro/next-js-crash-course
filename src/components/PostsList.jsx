@@ -26,6 +26,7 @@ function PostsList({ isPosting, onStopPosting }) {
       ) : null}
       {/* null or undefined or false are display nothing */}
 
+      {posts.length > 0 && (
       <ul className={classes.posts}>
         <Post author='Awesome' body='body2' />
         <Post author='Aoi' />
@@ -35,6 +36,9 @@ function PostsList({ isPosting, onStopPosting }) {
           ))
         }
       </ul>
+      )}
+
+      {posts.length === 0 && <p>No posts found. Start adding some!</p>}
     </>
   )
 }
