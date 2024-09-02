@@ -2,12 +2,38 @@ import Post from './Post'
 import classes from './PostsList.module.css'
 import NewPost from './NewPost'
 import Modal from './Modal'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function PostsList({ isPosting, onStopPosting }) {
+  //react cannot use await here due to PostsList function cannot be async, so we need to use then synatax
+
+  // Below code creates infinite loop. To fix it, use useEffect.
+  // fetch('http://localhost:8080/posts').then((response) => {
+  //   return response.json();
+  // }).then((data) => {data.posts});
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch('http://localhost:8080/posts');
+      const resData = await response.json();
+      setPosts(resData.posts); //with useEffect, we can ensure that the data is fetched only once when the component is mounted. And cause no infinite loop.
+    }
+    fetchPosts();
+  }, []);
+
+
+
   const [posts, setPosts] = useState([])
 
   function addPostHandler(newPost) {
+    
+    fetch('http://localhost:8080/posts', {
+      method: 'POST',
+      body: JSON.stringify(newPost),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
     // setPosts([newPost, ...posts]); //given this setPosts is async, so we can't rely on the current state
     setPosts((prevPosts) => [newPost, ...prevPosts]); //ensure that the latest correct state is used.
   }
