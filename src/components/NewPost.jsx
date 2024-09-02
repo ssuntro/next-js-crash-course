@@ -1,7 +1,7 @@
 import classes from './NewPost.module.css'
 import { useState } from 'react'
 
-function NewPost({ onCancel }) {
+function NewPost({ onCancel, onAddPost }) {
   // #1
   // document.querySelector('textarea').addEventListener('change', function() {});
 
@@ -29,7 +29,8 @@ function NewPost({ onCancel }) {
         body: enteredBody,
         author: enteredAuthor
     }
-    console.log(postData);
+    // console.log(postData);
+    onAddPost(postData);
     onCancel()
   }
   return (
