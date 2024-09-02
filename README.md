@@ -1,14 +1,14 @@
 ## Slibling
-<A/>
-<B/>
+`<A/>` <br>
+`<B/>`
 
 ## Typical prop, onChange
-<A onChange={onChange}/>
+`<A onChange={onChange}/>`
 
-## special prop, Children
-<A>
- <B />
-</A>
+## Special prop, Children
+`<A>` <br>
+` <B />` <br>
+`</A>`
 
 
 
