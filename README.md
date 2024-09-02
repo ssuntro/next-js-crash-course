@@ -1,4 +1,4 @@
-# Development
+# Setup development env
 `yarn dev`
 
 # Side note
