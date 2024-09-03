@@ -1,3 +1,4 @@
+import { Outlet } from 'react-router-dom'
 import MainHeader from '../components/MainHeader'
 import PostsList from '../components/PostsList'
 import { useState } from 'react'
