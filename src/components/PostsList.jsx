@@ -1,10 +1,10 @@
 import Post from './Post'
 import classes from './PostsList.module.css'
-import NewPost from './NewPost'
+import NewPost from '../routes/NewPost'
 import Modal from './Modal'
 import { useEffect, useState } from 'react'
 
-function PostsList({ isPosting, onStopPosting }) {
+function PostsList({  }) {
   //react cannot use await here due to PostsList function cannot be async, so we need to use then synatax
 
   // Below code creates infinite loop. To fix it, use useEffect.
@@ -45,7 +45,7 @@ function PostsList({ isPosting, onStopPosting }) {
 
   return (
     <>
-      {isPosting ? (
+      {/* {isPosting ? (
         <Modal onClose={onStopPosting}>
           <NewPost
             // onBodyChange={bodyChangeHandler}
@@ -55,7 +55,7 @@ function PostsList({ isPosting, onStopPosting }) {
           />
         </Modal>
       ) : null}
-      {/* null or undefined or false are display nothing */}
+      null, undefined or false are display nothing */}
 
       {!isFetching && posts.length > 0 && (
       <ul className={classes.posts}>
