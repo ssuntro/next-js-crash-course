@@ -14,6 +14,7 @@ function Posts() {
   return (
     <>
     {/* <MainHeader onCreatePost={showModalHandler}/> */}
+    <Outlet />
     <main>
       <PostsList 
       // onStopPosting={hideModalHandler} isPosting={modalIsVisible}
