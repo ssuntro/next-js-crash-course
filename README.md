@@ -1,5 +1,5 @@
 # Setup development env
-`yarn dev`
+`yarn add & yarn dev`
 
 # Side note
 ## Slibling
