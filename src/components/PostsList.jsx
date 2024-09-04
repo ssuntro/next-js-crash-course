@@ -3,45 +3,50 @@ import classes from './PostsList.module.css'
 import NewPost from '../routes/NewPost'
 import Modal from './Modal'
 import { useEffect, useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 
-function PostsList({  }) {
+function PostsList() {
+  const posts = useLoaderData();
+
   //react cannot use await here due to PostsList function cannot be async, so we need to use then synatax
 
   // Below code creates infinite loop. To fix it, use useEffect.
   // fetch('http://localhost:8080/posts').then((response) => {
   //   return response.json();
   // }).then((data) => {data.posts});
-  useEffect(() => {
-    async function fetchPosts() {
-      setIsFetching(true);
-      const response = await fetch('http://localhost:8080/posts');
-      const resData = await response.json();
-      setPosts(resData.posts); //with useEffect, we can ensure that the data is fetched only once when the component is mounted. And cause no infinite loop.
-      setIsFetching(false);
-    }
+  // solution is below
+  // useEffect(() => {
+  //   async function fetchPosts() {
+  //     setIsFetching(true);
+  //     const response = await fetch('http://localhost:8080/posts');
+  //     const resData = await response.json();
+  //     setPosts(resData.posts); //with useEffect, we can ensure that the data is fetched only once when the component is mounted. And cause no infinite loop.
+  //     setIsFetching(false);
+  //   }
     
-    fetchPosts();
+  //   fetchPosts();
     
-  }, []);
+  // }, []);
 
 
 
-  const [isFetching, setIsFetching] = useState(false);
-  const [posts, setPosts] = useState([])
+  // const [isFetching, setIsFetching] = useState(false);
+  // const [posts, setPosts] = useState([])
 
-  function addPostHandler(newPost) {
+  // function addPostHandler(newPost) {
     
-    fetch('http://localhost:8080/posts', {
-      method: 'POST',
-      body: JSON.stringify(newPost),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+  //   fetch('http://localhost:8080/posts', {
+  //     method: 'POST',
+  //     body: JSON.stringify(newPost),
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //   });
 
-    // setPosts([newPost, ...posts]); //given this setPosts is async, so we can't rely on the current state
-    setPosts((prevPosts) => [newPost, ...prevPosts]); //ensure that the latest correct state is used.
-  }
+    
+  //   // setPosts([newPost, ...posts]); //given this setPosts is async, so we can't rely on the current state
+  //   setPosts((prevPosts) => [newPost, ...prevPosts]); //ensure that the latest correct state is used.
+  // }
 
   return (
     <>
@@ -57,7 +62,7 @@ function PostsList({  }) {
       ) : null}
       null, undefined or false are display nothing */}
 
-      {!isFetching && posts.length > 0 && (
+      {posts.length > 0 && (
       <ul className={classes.posts}>
         <Post author='Awesome' body='body2' />
         <Post author='Aoi' />
@@ -69,16 +74,16 @@ function PostsList({  }) {
       </ul>
       )}
 
-      {!isFetching && posts.length === 0 && (
+      {posts.length === 0 && (
         <div style={{textAlign: 'center', color: 'white'}}>
           <h2>There is no posts yet.</h2>
           <p>Start adding some!</p>
         </div>
       )}
 
-      {isFetching && (<div>
+      {/* {isFetching && (<div>
         <p style={{textAlign: 'center', color: 'white'}}>Loading...</p>
-      </div>)}
+      </div>)} */}
     </>
   )
 }
