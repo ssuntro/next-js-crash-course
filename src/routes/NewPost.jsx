@@ -1,8 +1,9 @@
 import classes from './NewPost.module.css'
 import { useState } from 'react'
 import Modal from '../components/Modal'
+import { Link } from 'react-router-dom'
 
-function NewPost({ onCancel, onAddPost }) {
+function NewPost({  onAddPost }) {
   // #1
   // document.querySelector('textarea').addEventListener('change', function() {});
 
@@ -30,9 +31,8 @@ function NewPost({ onCancel, onAddPost }) {
         body: enteredBody,
         author: enteredAuthor
     }
-    // console.log(postData);
     onAddPost(postData);
-    onCancel()
+    // onCancel()
   }
   return (
     <Modal>
@@ -52,7 +52,7 @@ function NewPost({ onCancel, onAddPost }) {
         <input type='text' id='name' required onChange={authorChangeHandler} />
       </p>
       <p className={classes.actions}>
-        <button type='button' onClick={onCancel}>Cancel</button>
+        <Link type='button' to="..">Cancel</Link>
         <button type='submit'>Submit</button>
       </p>
     </form>
