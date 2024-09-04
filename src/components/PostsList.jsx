@@ -33,20 +33,7 @@ function PostsList() {
   // const [isFetching, setIsFetching] = useState(false);
   // const [posts, setPosts] = useState([])
 
-  // function addPostHandler(newPost) {
-    
-  //   fetch('http://localhost:8080/posts', {
-  //     method: 'POST',
-  //     body: JSON.stringify(newPost),
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   });
-
-    
-  //   // setPosts([newPost, ...posts]); //given this setPosts is async, so we can't rely on the current state
-  //   setPosts((prevPosts) => [newPost, ...prevPosts]); //ensure that the latest correct state is used.
-  // }
+  
 
   return (
     <>
